@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AD신호등 — 부동산 매물 광고 검수 시스템</title>
 <meta name="description" content="네이버·직방·다방·피터팬·당근에 올린 우리 사무소 매물 광고를 건축물대장 같은 공공 자료와 맞춰 보고, 결과를 신호등 색으로 알려 주는 Windows 프로그램입니다.">
-<meta property="og:title" content="AD신호등 — 올린 매물 광고, 건축물대장과 맞나요?">
-<meta property="og:description" content="우리 사무소 매물 광고를 공공 자료와 자동으로 맞춰 보고 신호등 색으로 알려 드립니다. 7일 무료 체험.">
+<meta property="og:title" content="AD신호등 — 매물 광고 수십~수천 건, 일일이 검수할 수 있나요?">
+<meta property="og:description" content="우리 사무소 매물 광고를 전부 모아 건축물대장과 자동으로 맞춰 보고, 고칠 광고만 신호등 색으로 알려 드립니다. 7일 무료 체험.">
 <meta property="og:image" content="https://redeyes-len.github.io/AD-Signal/icon.png">
 <link rel="icon" href="icon.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
@@ -78,6 +78,17 @@
   figure.shot img { display: block; width: 100%; min-width: 720px; height: auto; }
   figure.shot figcaption { font-size: 13px; color: var(--sub); padding: 10px 14px; border-top: 1px solid var(--line); background: #FAFBFD; }
 
+  .pains { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 24px; }
+  .pains div { border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; background: var(--bg); }
+  .pains b { display: block; font-size: 17px; font-weight: 800; }
+  .pains span { font-size: 15px; color: var(--sub); }
+  .vs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+  .vs div { border-radius: 14px; padding: 16px 20px; border: 1px solid; }
+  .vs b { display: block; font-size: 16px; font-weight: 800; }
+  .vs span { font-size: 15px; }
+  .vs .hand { background: #F4F5F8; border-color: #D4D9E3; color: #4A5160; }
+  .vs .auto { background: #EEF3FF; border-color: #BFD0F8; } .vs .auto b { color: #2A4FB8; }
+
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .chips span { font-size: 15px; font-weight: 600; padding: 8px 14px; border-radius: 10px; background: #EEF3FF; color: #2A4FB8;
                 border: 1px solid #CBD8FA; }
@@ -93,6 +104,8 @@
 
   .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 24px; }
   .trust div { border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; background: #fff; }
+  section:not(.alt) ol.steps li { background: var(--bg); }
+  section:not(.alt) details { background: var(--bg); }
   .trust b { display: block; font-size: 16.5px; font-weight: 800; }
   .trust b::before { content: "✓ "; color: var(--green); }
   .trust span { font-size: 14.5px; color: var(--sub); }
@@ -147,8 +160,8 @@
     </div>
     <div class="hero-row">
       <div>
-        <h1>올린 매물 광고,<br><em>건축물대장</em>과 맞나요?</h1>
-        <p class="lead">우리 사무소가 올린 광고를 건축물대장 같은 공공 자료와 자동으로 맞춰 보고, 결과를 신호등 색으로 알려 드립니다.</p>
+        <h1>매물 광고 수십~수천 건,<br><em>일일이 검수</em>할 수 있나요?</h1>
+        <p class="lead">광고마다 건축물대장을 떼어 맞춰 볼 시간은 없습니다. AD신호등이 우리 사무소 광고를 전부 모아 대신 맞춰 보고, 고칠 광고만 신호등 색으로 알려 드립니다.</p>
         <div class="platforms"><span>네이버</span><span>직방</span><span>다방</span><span>피터팬</span><span>당근</span></div>
         <div class="cta-row">
           <a class="btn primary" href="#start">7일 무료 체험 시작하기</a>
@@ -163,7 +176,24 @@
 
 <section>
   <div class="wrap">
-    <div class="stat">
+    <h2>광고를 일일이 검수하기는 사실상 불가능합니다</h2>
+    <p class="desc">중개 업무만으로도 바쁜데, 올린 광고를 하나씩 건축물대장과 맞춰 볼 여력은 없습니다.</p>
+    <div class="pains">
+      <div><b>광고가 너무 많습니다</b><span>사무소 한 곳이 올린 광고가 적게는 수십 건, 많게는 수천 건입니다.</span></div>
+      <div><b>한 건에도 볼 것이 많습니다</b><span>건축물대장을 찾아 면적·층·용도·주차·승강기·위반건축물까지 하나씩 대조해야 합니다.</span></div>
+      <div><b>검수에 쓸 시간이 없습니다</b><span>손님 응대와 계약이 먼저라, 광고 검수는 늘 뒤로 밀립니다.</span></div>
+    </div>
+    <div class="vs">
+      <div class="hand"><b>손으로 하면</b><span>광고 수만큼 같은 대조를 반복</span></div>
+      <div class="auto"><b>AD신호등은</b><span>버튼 한 번으로 우리 사무소 광고 전체를 자동 대조 · 매물 수 제한 없음</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>그 사이 단속은 계속됩니다</h2>
+    <div class="stat" style="margin-top:20px">
       <div class="num">10,412<small>건</small></div>
       <p>국토교통부가 1년 동안 적발한 <b>위법 의심 부동산 온라인 광고</b>입니다. 부당한 표시·광고는 <b>500만원 이하 과태료</b> 대상입니다.
         <span>2025년 7월 ~ 2026년 6월 · 출처: 국토교통부 발표(SBS Biz 2026-09-18 보도) · 근거: 공인중개사법 제18조의2·제51조</span></p>
@@ -173,11 +203,11 @@
       <div class="bar"><div><span>명시의무 위반</span><span>40.0%</span></div><i style="--w:40%"></i></div>
       <div class="bar"><div><span>무자격자 광고</span><span>4.6%</span></div><i style="--w:4.6%"></i></div>
     </div>
-    <p class="note">위반 유형 — 상시 모니터링 9,383건 기준. 광고마다 손으로 건축물대장과 맞춰 보기는 어렵습니다.</p>
+    <p class="note">위반 유형 — 상시 모니터링 9,383건 기준.</p>
   </div>
 </section>
 
-<section class="alt">
+<section>
   <div class="wrap">
     <h2>광고마다 신호등 색으로 알려 줍니다</h2>
     <p class="desc">지적마다 근거 법령·고시 조항이 함께 나오고, 결과는 엑셀 한 파일로 저장합니다.</p>
@@ -193,7 +223,7 @@
   </div>
 </section>
 
-<section>
+<section class="alt">
   <div class="wrap">
     <h2>이런 항목을 봅니다</h2>
     <div class="chips">
@@ -204,7 +234,7 @@
   </div>
 </section>
 
-<section class="alt" id="how">
+<section id="how">
   <div class="wrap">
     <h2>모으고, 맞춰 보고, 색으로 알려 줍니다</h2>
     <ol class="steps">
@@ -217,7 +247,7 @@
   </div>
 </section>
 
-<section>
+<section class="alt">
   <div class="wrap">
     <h2>정보는 내 PC에, 검수는 우리 광고만</h2>
     <div class="trust">
@@ -228,7 +258,7 @@
   </div>
 </section>
 
-<section class="alt">
+<section>
   <div class="wrap">
     <h2>요금</h2>
     <div class="price">
@@ -245,7 +275,7 @@
   </div>
 </section>
 
-<section id="start">
+<section id="start" class="alt">
   <div class="wrap">
     <h2>시작하는 순서</h2>
     <div class="start">
@@ -263,7 +293,7 @@
   </div>
 </section>
 
-<section class="alt">
+<section>
   <div class="wrap">
     <h2>자주 묻는 질문</h2>
     <details><summary>검수 결과대로 고치면 과태료를 안 받나요?</summary>
