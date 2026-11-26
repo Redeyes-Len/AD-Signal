@@ -205,13 +205,20 @@
   }
 
   /* ---------- 영상 ---------- */
-  #video .frame { --ratio: 56.25%; background: transparent; border: 0; overflow: visible; }
-  #video .frame > video.frame__img { object-fit: contain; background: #10131c; border-radius: calc(var(--r-lg) - 1px); }
-  #video video.frame__img:focus, #video video.frame__img:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; }
+  :is(#video, #shorts) .frame { --ratio: 56.25%; background: transparent; border: 0; overflow: visible; }
+  :is(#video, #shorts) .frame > video.frame__img { object-fit: contain; background: #10131c; border-radius: calc(var(--r-lg) - 1px); }
+  :is(#video, #shorts) video.frame__img:focus, :is(#video, #shorts) video.frame__img:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; }
   .chapters { list-style: none; margin: var(--s-2) 0 0; padding: 0; display: grid; align-content: start; }
   .chapters li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--s-3); padding: var(--s-4) 0; border-bottom: 1px solid var(--line); }
   .chapters span { font-weight: 600; font-size: var(--t-small); line-height: 1.6; color: var(--muted); }
   @media (max-width: 1023px) { #video .grid > * { grid-column: 1 / -1; } #video figure { margin-top: var(--s-6); } }
+  /* 쇼츠 3편: 한 화면(구간 높이 고정)에 들도록 영상 높이를 화면 높이로 묶는다 — 330px = 위아래 여백·제목·설명 줄 */
+  .shorts__row { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); max-width: min(960px, calc((100vh - 330px) * 1.6875 + 2 * var(--gutter))); }
+  #shorts .frame { --ratio: 177.78%; }
+  .shorts__row p { margin-top: var(--s-3); font-size: var(--t-small); line-height: 1.5; }
+  .shorts__row p span { color: var(--muted); }
+  /* 휴대폰: 세로 영상 셋을 한 줄에 넣으면 너무 작아 옆으로 넘겨 본다(페이지는 넘치지 않고 이 줄만 스크롤) */
+  @media (max-width: 639px) { .shorts__row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: var(--s-3); } .shorts__row > li { scroll-snap-align: start; } }
 
   /* ---------- 결과 화면(남색 띠) ---------- */
   .legend3 { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6); margin-top: var(--s-5); }
@@ -742,6 +749,39 @@
           </video>
         </figure>
       </div>
+    </div>
+  </section>
+
+  <!-- 쇼츠 3편 (shorts/*.mp4 는 gh-pages 에만, 원본은 promo/shorts/out) -->
+  <section class="section" id="shorts" aria-labelledby="shorts-h">
+    <div class="wrap">
+        <h2 id="shorts-h">짧게 보는 쇼츠 3편</h2>
+        <ul class="shorts__row">
+          <li>
+            <figure class="frame frame--photo">
+              <video class="frame__img" controls playsinline preload="none" poster="shorts/quiz.jpg?v=1" aria-label="쇼츠 퀴즈: 이 광고, 위반일까요? 41초">
+                <source src="shorts/quiz.mp4?v=1" type="video/mp4">
+              </video>
+            </figure>
+            <p><b>퀴즈</b> 이 광고, 위반일까요? <span>0:41</span></p>
+          </li>
+          <li>
+            <figure class="frame frame--photo">
+              <video class="frame__img" controls playsinline preload="none" poster="shorts/pov.jpg?v=1" aria-label="쇼츠 POV: 광고 3,954건 검수 미션을 받았다, 46초">
+                <source src="shorts/pov.mp4?v=1" type="video/mp4">
+              </video>
+            </figure>
+            <p><b>POV</b> 광고 3,954건 검수 미션 <span>0:46</span></p>
+          </li>
+          <li>
+            <figure class="frame frame--photo">
+              <video class="frame__img" controls playsinline preload="none" poster="shorts/news.jpg?v=1" aria-label="쇼츠 뉴스: 수천 건 광고, 다 확인하셨나요? 37초">
+                <source src="shorts/news.mp4?v=1" type="video/mp4">
+              </video>
+            </figure>
+            <p><b>뉴스</b> 수천 건 광고, 다 확인하셨나요? <span>0:37</span></p>
+          </li>
+        </ul>
     </div>
   </section>
 
