@@ -231,6 +231,8 @@
   .app > .app__pane > .ui-panel { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
   .app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 56px; background: linear-gradient(transparent, #fff); pointer-events: none; }
   @media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); height: 420px; } }
+  /* 결과 화면 구간은 앱 그림이 화면 높이에 맞춰 줄고 아래가 흐려지는 디자인 — system.css 의 '넘치면 늘어남'에서 빼고 한 화면 고정 */
+  @media (min-width: 1280px) { #result { height: 100vh; height: 100svh; } #result > .wrap { flex: 1 1 0; min-height: 0; } }
   @media (max-width: 1023px) { .app.ui { grid-template-columns: minmax(0, 1fr); } .app > .app__pane--list { max-height: 252px; } .app > .app__pane--list::after { display: none; } .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--ui-line); } }
   @media (max-width: 639px) { .app > .app__pane--list { display: none; } .app > .app__pane + .app__pane { border-top: 0; } }
   .app { font: 400 13px/1.45 var(--font-text); color: var(--ui-ink); }
